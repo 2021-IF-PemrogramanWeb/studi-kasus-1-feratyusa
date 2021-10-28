@@ -1,22 +1,21 @@
 /* Page content */
 #main {
-    margin-left: 200px; /* Same as the width of the sidenav */
+  margin-left: 200px; /* Same as the width of the sidenav */
 }
 
 /* The sidenav */
 .sidenav {
-    height: 100%;
-    width: 200px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #fff;
-    overflow-x: hidden;
-    padding-top: 20px;
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+  padding-top: 20px;
 }
 
-a{
-    border-radius: 50%;
+a {
+  border-radius: 50%;
 }
-  

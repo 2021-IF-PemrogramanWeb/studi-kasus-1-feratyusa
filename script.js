@@ -12,9 +12,9 @@ const data = {
 };
 
 const config = {
-  type: "line",
+  type: "bar",
   data: data,
-  options: {},
+  options: { responsive: true, maintainAspectRation: false },
 };
 
 const myChart = new Chart(document.getElementById("graph"), config);
