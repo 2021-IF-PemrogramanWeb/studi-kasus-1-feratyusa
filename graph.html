@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-light bg-light">
+      <div class="container justify-content-between">
+        <a class="navbar-brand" href="#">
+          <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" />
+        </a>
+        <h1>Tanggal</h1>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <!-- Content -->
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-2 text-center">
+          <!-- Left Content -->
+          <div class="row mb-2">
+            <div class="col">
+              <a class="btn btn-info btn-lg" href="#">Mobil 1</a>
+            </div>
+          </div>
+          <div class="row mb-5">
+            <div class="col">
+              <a class="btn btn-primary btn-lg" href="#">Mobil 2</a>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <a class="btn btn-info btn-lg" href="#">Graph</a>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <a class="btn btn-info btn-lg" href="#">Export</a>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <a class="btn btn-danger btn-lg" href="#">Logout</a>
+            </div>
+          </div>
+          <!-- End Left Content -->
+        </div>
+        <div class="col">
+          <!-- Right Content -->
+          <canvas id="graph"></canvas>
+          <!-- End of Right Content -->
+        </div>
+      </div>
+    </div>
+    <!-- End Content -->
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
