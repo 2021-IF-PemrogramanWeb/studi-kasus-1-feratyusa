@@ -5,4 +5,4 @@
 3. Membuat Chart berdasarkan data pada database
 
 ## Website
-https://studi-kasus-1.000webhostapp.com/
+https://studi-kasus-1-prabu.000webhostapp.com/
