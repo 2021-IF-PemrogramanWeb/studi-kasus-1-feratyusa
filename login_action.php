@@ -30,7 +30,7 @@
         }
     }
     else{
-        header("location: login.php?status=error");
+        header("location: login.php?status=login-failed");
         exit;
     }
 

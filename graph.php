@@ -6,7 +6,7 @@ if(!isset($_SESSION["login"]) || !isset($_SESSION["username"])
       || !isset($_GET["user"]) || $_SESSION["username"] != $_GET["user"] || $_SESSION["login"] != true){
   session_unset();
   session_destroy();
-  header("location: login.php?status=notloggedin");
+  header("location: login.php");
   exit;
 }
 

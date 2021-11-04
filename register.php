@@ -1,3 +1,35 @@
+<?php
+
+// Process status
+$warning = "";
+
+if(isset($_GET["status"])){
+  $status = $_GET["status"];
+  switch ($status) {
+    case 'forbidden':
+      $warning = "Impostor! Login first, please.";
+      break;
+
+    case 'username-exist':
+      $warning = "Username already exist, try another one";
+      break;
+
+    case 'confirm-pass-error':
+      $warning = "Confirm password is wrong, baka!";
+      break;
+    
+    case 'forbidden':
+      $warning = "Oopssy Daisy, something went wrong. Try again.";
+      break;
+    
+    default:
+      $warning = "";
+      break;
+  }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,6 +47,7 @@
         <div class="row justify-content-center">
           <div class="col col-md-6 text-center">
             <img src="image/index.png" alt="logo" width="200" height="200">
+            <h5 class="text-danger"><?php echo $warning; ?></h5>
           </div>
         </div>
         <div class="row justify-content-center">

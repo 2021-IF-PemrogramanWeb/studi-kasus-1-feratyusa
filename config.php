@@ -10,7 +10,7 @@ $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
 
 // Check connection
 if ($conn->connect_error) {
-    header("location: login.html?status=connection_failed");
+    header("location: login.php?status=connection_failed");
     exit;
 }
 
