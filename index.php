@@ -1,3 +1,35 @@
+<?php  
+
+session_start();
+
+if(!isset($_SESSION["login"]) || !isset($_SESSION["username"]) 
+  || !isset($_GET["user"]) || $_SESSION["username"] != $_GET["user"] || $_SESSION["login"] != true){
+  header("location: login.php?status=notloggedin");
+  exit;
+}
+
+require_once "config.php";
+
+// Get the data identifier (asal kota)
+if(!isset($_SESSION['asal'])){
+    $_SESSION['asal'] = 'Madiun';
+}
+else if(isset($_GET['asal'])){
+    $_SESSION['asal'] = $_GET['asal'];
+}
+
+// Get data and pass the array to SESSION
+$asal = $_SESSION['asal'];
+$sql = "SELECT nama, nrp, ipk, semester FROM data_mahasiswa WHERE asal='$asal' ORDER BY semester ASC";
+
+if($result = $conn->query($sql)){
+    $rows = $result;
+}
+
+$conn->close();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,9 +48,9 @@
     <nav class="navbar navbar-light bg-light">
       <div class="container justify-content-between">
         <a class="navbar-brand" href="#">
-          <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" />
+          <img src="image/index.png" alt="" width="34" height="30" />
         </a>
-        <h1>Tanggal</h1>
+        <h3><?php echo date('Y-m-d'); ?></h3>
       </div>
     </nav>
     <!-- End Navbar -->
@@ -30,17 +62,17 @@
           <!-- Left Content -->
           <div class="row mb-2">
             <div class="col">
-              <a class="btn btn-info btn-lg" href="#">Mobil 1</a>
+              <a class="btn btn-info btn-lg" href="index.php?user=<?php echo $_SESSION["username"]; ?>&asal=Madiun">Madiun</a>
             </div>
           </div>
           <div class="row mb-5">
             <div class="col">
-              <a class="btn btn-primary btn-lg" href="#">Mobil 2</a>
+              <a class="btn btn-primary btn-lg" href="index.php?user=<?php echo $_SESSION["username"]; ?>&asal=Jakarta">Jakarta</a>
             </div>
           </div>
           <div class="row mb-2">
             <div class="col">
-              <a class="btn btn-info btn-lg" href="#">Graph</a>
+              <a class="btn btn-info btn-lg" href="graph.php?user=<?php echo $_SESSION["username"]; ?>">Graph</a>
             </div>
           </div>
           <div class="row mb-2">
@@ -50,7 +82,7 @@
           </div>
           <div class="row mb-2">
             <div class="col">
-              <a class="btn btn-danger btn-lg" href="#">Logout</a>
+              <a class="btn btn-danger btn-lg" href="logout.php">Logout</a>
             </div>
           </div>
           <!-- End Left Content -->
@@ -60,30 +92,23 @@
           <table class="table table-bordered">
             <thead class="table-info">
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Nama</th>
+                <th scope="col">NRP</th>
+                <th scope="col">IPK</th>
+                <th scope="col">Semester</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
+              <?php
+                while($row = $rows->fetch_assoc()){
+                  echo '<tr> 
+                          <td>'.$row["nama"].'</td> 
+                          <td>'.$row["nrp"].'</td> 
+                          <td>'.$row["ipk"].'</td> 
+                          <td>'.$row["semester"].'</td>
+                        </tr>';
+                }
+              ?>
             </tbody>
           </table>
           <!-- End of Right Content -->

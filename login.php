@@ -12,12 +12,18 @@
   <body>
     <section class="content">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6">
+        <div class="row justify-content-center">
+          <div class="col col-md-6 text-center">
+            <img src="image/index.png" alt="logo" width="200" height="200">
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col col-md-6">
+            
             <div class="card card-primary">
               <!-- Card Header -->
               <div class="card-header">
-                <div class="card-title">LOGIN</div>
+                <div class="card-title"><h2>LOGIN</h2></div>
               </div>
 
               <!-- Form -->
@@ -25,8 +31,8 @@
                 <!-- Card Body -->
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="user">User</label>
-                    <input type="text" class="form-control" name="user" placeholder="User" />
+                    <label for="username">User</label>
+                    <input type="text" class="form-control" name="username" placeholder="Username" />
                   </div>
                   <div class="form-group">
                     <label for="password">Password</label>
@@ -37,7 +43,7 @@
                 <!-- Card Footer -->
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
+                  <p>Don't have an account? <a href="register.php">Create one!</a></p>
               </form>
             </div>
           </div>
