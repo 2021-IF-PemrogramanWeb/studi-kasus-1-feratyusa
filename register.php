@@ -51,6 +51,7 @@
                 <!-- Card Footer -->
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
+                  <p>Already have an account? <a href="login.php">Login</a></p>
                 </div>
               </form>
             </div>
