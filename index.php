@@ -2,8 +2,7 @@
 
 session_start();
 
-if(!isset($_SESSION["login"]) || !isset($_SESSION["username"]) 
-  || !isset($_GET["user"]) || $_SESSION["username"] != $_GET["user"] || $_SESSION["login"] != true){
+if(!isset($_SESSION["login"]) || $_SESSION["login"] == false){
   header("location: login.php");
   exit;
 }
@@ -50,6 +49,7 @@ $conn->close();
         <a class="navbar-brand" href="#">
           <img src="image/index.png" alt="" width="34" height="30" />
         </a>
+        <h4>Halo, <?php echo $_SESSION["nama"] ?></h4>
         <h3><?php echo date('Y-m-d'); ?></h3>
       </div>
     </nav>
@@ -77,7 +77,7 @@ $conn->close();
           </div>
           <div class="row mb-2">
             <div class="col">
-              <a class="btn btn-info btn-lg" href="#">Export</a>
+              <a class="btn btn-warning btn-lg disabled" href="#" aria-disabled="true">Export</a>
             </div>
           </div>
           <div class="row mb-2">

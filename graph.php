@@ -2,12 +2,9 @@
 
 session_start();
 
-if(!isset($_SESSION["login"]) || !isset($_SESSION["username"]) 
-      || !isset($_GET["user"]) || $_SESSION["username"] != $_GET["user"] || $_SESSION["login"] != true){
-  session_unset();
-  session_destroy();
-  header("location: login.php");
-  exit;
+if(!isset($_SESSION["login"]) || !$_SESSION["login"]){
+    header("location: login.php");
+    exit;
 }
 
 require_once "config.php";
@@ -99,7 +96,7 @@ $conn->close();
           </div>
           <div class="row mb-2">
             <div class="col">
-              <a class="btn btn-info btn-lg" href="#">Export</a>
+              <a class="btn btn-warning btn-lg disabled" href="#" aria-disabled="true">Export</a>
             </div>
           </div>
           <div class="row mb-2">

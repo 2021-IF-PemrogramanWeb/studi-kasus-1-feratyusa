@@ -4,25 +4,32 @@
 
     // Check user login
     $user = trim($_POST["username"]);
-    $password_user = trim($_POST["password"]);
+    $password = trim($_POST["password"]);
+    $password_hash = "";
+    $nama = "";
 
+    $stmt = $conn->prepare('SELECT username, password, nama FROM users WHERE username = ?');
+    $stmt->bind_param('s', $user); // 's' specifies the variable type => 'string'
+    $stmt->execute();
+    $stmt->bind_result($username, $password_hash, $nama);
+    $stmt->store_result();
 
-    $sql = "SELECT username, password FROM users WHERE username='$user'";
-    $result = $conn->query($sql);
-
-    if($result->num_rows > 0){
-        $row = $result->fetch_assoc();
-        $pass_hash = $row["password"];
-
-        if(password_verify($password_user, $pass_hash)){
-
-            // Start Session
-            session_start();
-            $_SESSION["username"] = $user;
-            $_SESSION["login"] = true;
-            header("location: index.php?user=$user");
-            exit;
-
+    if($stmt->num_rows == 1){
+        // Fetch the rows
+        if($stmt->fetch()){
+            if(password_verify($password, $password_hash)){
+                // Start Session
+                session_start();
+                $_SESSION["nama"] = $nama;
+                $_SESSION["login"] = true;
+                header("location: index.php");
+                exit;
+            }
+            else{
+                echo $password_hash;
+                header("location: login.php?status=login-failed");
+                exit;
+            }
         }
         else{
             header("location: login.php?status=login-failed");

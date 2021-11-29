@@ -1,6 +1,8 @@
 <?php
 
-session_unset();
-header("location: login.php?status=logout");
+session_start();
+unset($_SESSION["nama"]);
+unset($_SESSION["login"]);
+header("location: index.php");;
 
 ?>

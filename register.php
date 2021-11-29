@@ -18,8 +18,20 @@ if(isset($_GET["status"])){
       $warning = "Confirm password is wrong, baka!";
       break;
     
-    case 'forbidden':
-      $warning = "Oopssy Daisy, something went wrong. Try again.";
+    case 'invalid-name':
+      $warning = "Name must contains only alphabet and numeric";
+      break;
+
+    case 'invalid-username':
+      $warning = "Username must contains only alphabet and numeric, don't use space";
+      break;
+
+    case 'invalid-password':
+      $warning = "Password length must be 8 - 20 characters";
+      break;
+
+    case 'error':
+      $warning = "Something went wrong went registering";
       break;
     
     default:
@@ -65,19 +77,19 @@ if(isset($_GET["status"])){
                 <div class="card-body">
                     <div class="form-group">
                         <label for="nama">Nama</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Nama" />
+                        <input type="text" class="form-control" name="nama" placeholder="ex: Budi (max length 50)" />
                     </div>
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" name="username" placeholder="Username" />
+                        <input type="text" class="form-control" name="username" placeholder="ex: budi123 (max length 20)" />
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" name="password" placeholder="Password" />
                     </div>
                     <div class="form-group">
-                        <label for="confirm-pass">Confirmation Password</label>
-                        <input type="password" class="form-control" name="confirm-pass" placeholder="Confirmation Password" />
+                        <label for="confirm-pass">Confirma Password</label>
+                        <input type="password" class="form-control" name="confirm-pass" placeholder="Retype Password" />
                     </div>
                 </div>
 

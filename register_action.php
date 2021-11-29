@@ -1,22 +1,41 @@
 <?php
 
+// Get post submit data
+$nama = trim($_POST["nama"]);
+$username = trim($_POST["username"]);
+$password = trim($_POST["password"]);
+$confirm_pass = trim($_POST["confirm-pass"]);
+
+// Validate input and Check length
+if(strlen($nama) > 50 || strlen($nama) < 1 || !ctype_alnum($nama)){
+    header("location: register.php?status=invalid-name");
+    exit;
+}
+if(strlen($username) > 20 || strlen($username) < 1 || !ctype_alnum($nama)){
+    header("location: register.php?status=invalid-username");
+    exit;
+}
+if(strlen($password) > 20 || strlen($password) < 8){
+    header("location: register.php?status=invalid-password");
+    exit;
+}
+
 require_once "config.php";
 
-// Get post submit data
-$nama = $_POST["nama"];
-$username = $_POST["username"];
-$password = $_POST["password"];
-$confirm_pass = $_POST["confirm-pass"];
+// // Validate username
+$stmt = $conn->prepare('SELECT username FROM users WHERE username = ?');
+$stmt->bind_param('s', $user); // 's' specifies the variable type => 'string'
+$stmt->execute();
+$stmt->bind_result($username);
+$stmt->store_result();
 
-// Validate username
-$sql_username = "SELECT username FROM users WHERE username='$username'";
-if($result = $conn->query($sql_username)){
-    if($result->num_rows > 0){
-        header("location: register.php?status=username-exist");
-        $conn->close();
-        exit;
-    }
+if($stmt->num_rows > 1){
+    header("location: register.php?status=username-exist");
+    $conn->close();
+    exit;
 }
+
+$stmt->close();
 
 // Validate Password
 if($password != $confirm_pass){
@@ -27,17 +46,20 @@ if($password != $confirm_pass){
 
 // Insert into database and hash the password
 $password_hash = password_hash($password, PASSWORD_DEFAULT);
-$insert_sql = "INSERT INTO users VALUES ('$username', '$password_hash', '$nama')";
-if($result = $conn->query($insert_sql)){
+$stmt = $conn->prepare('INSERT INTO users VALUES (?, ?, ?)');
+$stmt->bind_param('sss', $username, $password_hash, $nama); // 's' specifies the variable type => 'string'
+$stmt->execute();
+
+if($stmt->affected_rows == 1){
 
     session_start();
-    $_SESSION["username"] = $username;
+    $_SESSION["nama"] = $nama;
     $_SESSION["login"] = true;
-    header("location: index.php?user=$username");
+    header("location: index.php");
 
 }
 else{
-    header("location: login.php?status=error");
+    header("location: register.php?status=error");
     $conn->close();
     exit;
 }
